@@ -20,6 +20,12 @@ RSpec.describe Post do
     expect(post.blog). to eq(blog)
   end
 
+  it 'supports setting attributes in the initializer' do
+    it = Post.new(title: "mytitle", body: "mybody")
+    expect(it.title).to eq("mytitle")
+    expect(it.body).to eq("mybody")
+  end
+
   describe "#publish" do
     it "add the post to the blog" do
       blog = spy("blog")
