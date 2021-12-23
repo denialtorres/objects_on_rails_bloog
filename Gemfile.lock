@@ -152,6 +152,7 @@ GEM
       ffi (~> 1.0)
     regexp_parser (2.2.0)
     rexml (3.2.5)
+    rr (3.0.9)
     rspec-core (3.10.1)
       rspec-support (~> 3.10.0)
     rspec-expectations (3.10.1)
@@ -237,6 +238,7 @@ DEPENDENCIES
   pry (~> 0.13.1)
   puma (~> 4.1)
   rails (~> 6.0.4, >= 6.0.4.4)
+  rr (~> 3.0, >= 3.0.9)
   rspec-rails (~> 5.0.0)
   sass-rails (>= 6)
   selenium-webdriver
