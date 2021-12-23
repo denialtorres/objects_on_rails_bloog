@@ -1,5 +1,6 @@
 require 'rails_helper'
 require 'minitest/autorun'
+require 'rr'
 
 RSpec.describe Post do
   let(:post) { Post.new }
@@ -37,6 +38,39 @@ RSpec.describe Post do
       post.blog = blog
       post.publish
       expect(blog).to have_received(:add_entry).with(post)
+    end
+  end
+
+  describe '#pubdate' do
+    describe 'before publishing' do
+      it 'is blank' do
+        expect(post.pubdate).to be_nil
+      end
+    end
+
+    describe 'after publishing' do
+      before do
+        # mock the blog
+        clock = double('clock')
+        @now = DateTime.parse("2011-09-11T02:56")
+
+        allow(clock).to receive(:now){ @now }
+
+        blog = double('blog')
+        allow(blog).to receive(:add_entry){ post }
+
+        post.blog = blog
+        post.publish(clock)
+      end
+
+
+      it 'is a datetime' do
+        expect(post.pubdate.class).to eq(DateTime)
+      end
+
+      it 'is the corrurent time' do
+        expect(post.pubdate).to eq(@now)
+      end
     end
   end
 end
