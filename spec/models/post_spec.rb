@@ -9,6 +9,11 @@ RSpec.describe Post do
     expect(post.body).to be_nil
   end
 
+  it "supports reading and writing a title" do
+    post.title = "foo"
+    expect(post.title).to eq "foo"
+  end
+
   it "supports reading and writing a post body" do
     post.body = "foo"
     expect(post.body).to eq("foo")
