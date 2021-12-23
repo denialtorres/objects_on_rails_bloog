@@ -3,7 +3,7 @@ require 'minitest/autorun'
 require 'rr'
 
 RSpec.describe Post do
-  let(:post) { Post.new }
+  let(:post) { Post.new(title: 'title') }
 
   it 'is not valid with a blank title' do
     [nil, "", " "].each do |bad_title|
@@ -18,7 +18,6 @@ RSpec.describe Post do
   end
 
   it 'starts with blank attributes' do
-    expect(post.title).to be_nil
     expect(post.body).to be_nil
   end
 
@@ -50,6 +49,18 @@ RSpec.describe Post do
       post.blog = blog
       post.publish
       expect(blog).to have_received(:add_entry).with(post)
+    end
+
+    describe "given an invalid post" do
+      it 'wont add the post to the blog' do
+        blog = Blog.new
+
+        post.title = nil
+
+        blog.add_entry(post)
+
+        expect(post.publish).to be_falsey
+      end
     end
   end
 

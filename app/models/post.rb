@@ -14,6 +14,8 @@ class Post
   end
 
   def publish(clock=DateTime)
+    return false unless valid?
+
     self.pubdate = clock.now
     blog.add_entry(self)
   end
