@@ -5,6 +5,18 @@ require 'rr'
 RSpec.describe Post do
   let(:post) { Post.new }
 
+  it 'is not valid with a blank title' do
+    [nil, "", " "].each do |bad_title|
+      post.title = bad_title
+      expect(post.valid?).not_to be_truthy
+    end
+  end
+
+  it "is valid with a non-blank title" do
+    post.title = "title"
+    expect(post.valid?).to be_truthy
+  end
+
   it 'starts with blank attributes' do
     expect(post.title).to be_nil
     expect(post.body).to be_nil

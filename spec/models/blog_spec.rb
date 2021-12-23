@@ -65,7 +65,7 @@ RSpec.describe Blog do
 
   describe "#add_entry" do
     it "adds the entry to the blog" do
-      entry = Object.new
+      entry = OpenStruct.new(pubdate: DateTime.now)
       @it.add_entry(entry)
       expect(@it.entries).to include(entry)
     end
