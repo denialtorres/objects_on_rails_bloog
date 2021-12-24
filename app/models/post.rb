@@ -5,7 +5,7 @@ class Post
   extend ActiveModel::Naming
 
 
-  attr_accessor :blog, :title, :body, :pubdate
+  attr_accessor :blog, :title, :body, :pubdate, :image_url
 
   validates :title, presence: true
 
