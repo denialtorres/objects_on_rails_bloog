@@ -96,4 +96,16 @@ RSpec.describe Post do
       end
     end
   end
+
+  describe "#picture?" do
+    it "is true when the post has a picture URL" do
+      post.image_url = "http://www.example.com/foo.png"
+      expect(post.picture?).to be_truthy
+    end
+
+    it "is false when the post has no picture URL" do
+      post.image_url = ""
+      expect(post.picture?).to be_falsey
+    end
+  end
 end
