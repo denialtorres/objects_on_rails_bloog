@@ -1,7 +1,6 @@
-class PicturePostExhibit < SimpleDelegator
-  def initialize(model, context)
-    @context = context
-    super(model)
+class PicturePostExhibit < Exhibit
+  def self.applicable_to?(object)
+    object.picture?
   end
 
   def render_body
